@@ -1,0 +1,101 @@
+{% extends "Games/base.html" %}
+
+{% block content %}
+
+
+<div class="container text-center" id="main">
+    <div class="row">
+      <div class="col">
+       
+      </div>
+      <div class="col-6">
+        <div class="d-flex flex-column mb-3">
+            <div class="p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover mb-0 p-3 w-75 caption-top">
+                            <caption>Kiambu Pool A</caption>
+                            <thead>
+                              <tr class="p-3">
+                                <th scope="col"></th>
+                                <th scope="col">P</th>
+                                <th scope="col">W</th>
+                                <th scope="col">D</th>
+                                <th scope="col">L</th>
+                                <th scope="col">F</th>
+                                <th scope="col">A</th>
+                                <th scope="col">+/-</th>
+                                <th scope="col">pts</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for team in kiambuA %}
+                              <tr>
+                                <td>{{ forloop.counter }}</td> 
+                                <td>{{team.name}}</td>
+                                <td>{{team.played}}</td>
+                                <td>{{team.won}}</td>
+                                <td>{{team.draw}}</td>
+                                <td>{{team.loss}}</td>
+                                <td>{{team.f}}</td>
+                                <td>{{team.agg}}</td>
+                                <td>{{team.plusminus}}</td>
+                                <td>{{team.points}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>
+                
+            </div>
+            <div class="p-2">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-hover mb-0 p-3 w-75 caption-top">
+                            <caption>Kiambu Pool B</caption>
+                            <thead>
+                              <tr class="p-3">
+                                <th scope="col"></th>
+                                <th scope="col">P</th>
+                                <th scope="col">W</th>
+                                <th scope="col">D</th>
+                                <th scope="col">L</th>
+                                <th scope="col">F</th>
+                                <th scope="col">A</th>
+                                <th scope="col">+/-</th>
+                                <th scope="col">pts</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for team in kiambuB %}
+                              <tr>
+                                <td>{{ forloop.counter }}</td> 
+                                <td>{{team.name}}</td>
+                                <td>{{team.played}}</td>
+                                <td>{{team.won}}</td>
+                                <td>{{team.draw}}</td>
+                                <td>{{team.loss}}</td>
+                                <td>{{team.f}}</td>
+                                <td>{{team.agg}}</td>
+                                <td>{{team.plusminus}}</td>
+                                <td>{{team.points}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                  </div>
+               
+            </div>
+            
+          </div>
+      </div>
+      <div class="col">
+   
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "Games/base.html" %}
+{% block content %}
+
+
+<div id="main" class="card position-absolute top-50 start-50 translate-middle w-50 shadow p-3 mb-5 bg-body rounded">
+    <div class="card-header bg-dark text-light m-4">
+      ADD TEAM
+      </div>
+      <div class="card-body">
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class='row gap-4'>
+                {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <!-- Don't display the default error message here -->
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <br>
+            <input type="submit" name="submit" class="btn btn-dark"/>
+        </form>
+        
+
+      </div>
+  </div>
+{% endblock content %}
