@@ -9,3 +9,11 @@ class TeamFilter(django_filters.FilterSet):
         model = Team
         fields ='__all__'
         exclude = ['played','won','loss','agg','plusminus','f','points','f','draw']
+
+
+
+class FixtureFilter(django_filters.FilterSet):
+    class Meta:
+        model= Fixture
+        fields='__all__'
+        exclude = ['homeresults','awayresults']

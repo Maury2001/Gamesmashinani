@@ -27,7 +27,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"> 
                     {% for pool in kpools %}
 
-                    <li><a class="dropdown-item" href="kiambutable">{{pool.name}}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pooltable' pool.id %}">{{pool.name}}</a></li>
                     {% endfor %}
                 </ul>
               </div>
@@ -57,7 +57,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     {% for pool in mpools %}
 
-                    <li><a class="dropdown-item" href="murangatable">{{pool.name}}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pooltable' pool.id %}">{{pool.name}}</a></li>
                     {% endfor %}
                 </ul>
               </div>
@@ -87,7 +87,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     {% for pool in kpools %}
 
-                    <li><a class="dropdown-item" href="kiambutable">{{pool.name}}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'pooltable' pool.id %}">{{pool.name}}</a></li>
                     {% endfor %}
                 </ul>
               </div>
@@ -160,7 +160,7 @@
                     <tbody>
                       {% for team in teams %}
                       <tr>
-                        
+                        <td>{{ forloop.counter }}</td> 
                         <td>{{team.name}}</td>
                         <td>{{team.played}}</td>
                         <td>{{team.won}}</td>

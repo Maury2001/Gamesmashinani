@@ -21,10 +21,12 @@ from Games import views as game_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', game_view.Home, name='home'),
-    path('dashboard', game_view.Dash, name='dashboard'),
-    path('regionform', game_view.RegionAdj, name='regionform'),
-    path('teamform', game_view.TeamAdj, name='teamform'),
-    path('poolform', game_view.PoolAdj, name='poolform'),
-    path('kiambutable', game_view.KiambuTable, name='kiambutable'),
-    path('murangatable', game_view.MurangaTable, name='murangatable')
+    path('dashboard/', game_view.Dash, name='dashboard'),
+    path('regionform/', game_view.RegionAdj, name='regionform'),
+    path('teamform/', game_view.TeamAdj, name='teamform'),
+    path('poolform/', game_view.PoolAdj, name='poolform'),
+    path('kiambutable/', game_view.KiambuTable, name='kiambutable'),
+    path('murangatable/', game_view.MurangaTable, name='murangatable'),
+    path('pooltable/<str:pk>/', game_view.Table, name='pooltable'),
+    path('fixtures/', game_view.Fix, name='fixtures')
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import *
+from .models import Fixture, Pool, Team, Region
 from .forms import *
-from .filter import TeamFilter 
+from .filter import TeamFilter , FixtureFilter
 
 # Create your views here.
 def Home(request):
@@ -21,13 +21,23 @@ def Home(request):
     return render(request, 'Games/Home.html', context)
 
 
+def Base(request):
+    pools = Pool.objects.all()
+
+    context={
+        'pools':pools
+
+    }
+
+    return render(request, "Games/base.html", context)
+
 
 def Dash(request):
 
     region = Region.objects.all()
     pool = Pool.objects.all()
     kteam = Team.objects.filter(pool__region__name='KIAMBU')
-    teams= Team.objects.all()
+    teams= Team.objects.all().order_by('-points')
     kpools = Pool.objects.filter(region__name='KIAMBU')
     mpools = Pool.objects.filter(region__name='MURANGA')
     murangaA = Team.objects.filter(pool__name='m pool A').order_by('-points')
@@ -93,7 +103,7 @@ def PoolAdj(request):
         form = PoolForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('poolform')
+            return redirect('pool_idpoolform')
         
     context= {
         'form':form
@@ -105,10 +115,15 @@ def KiambuTable(request):
 
     kiambuA = Team.objects.filter(pool__name='k pool A').order_by('-points')
     KiambuB = Team.objects.filter(pool__name='k pool B').order_by('-points')
+    murangaA = Team.objects.filter(pool__name='m pool A').order_by('-points')
+    murangaB = Team.objects.filter(pool__name='m pool B').order_by('-points')
+    
 
     context={
         'kiambuA':kiambuA,
-        'kiambuB':KiambuB
+        'kiambuB':KiambuB,
+        'murangaA':murangaA,
+        'murangaB':murangaB
     }
 
 
@@ -128,3 +143,42 @@ def MurangaTable(request):
 
 
     return render(request, 'Games/murangatable.html',context)
+
+
+def Table(request, pk):
+    pool = Pool.objects.get(id=pk)
+    teams = Team.objects.filter(pool=pool).order_by('-points')  # Assuming Team has a 'pool' foreign key
+
+    # Apply filtering on the filtered teams
+    myfilter = TeamFilter(request.GET, queryset=teams)
+    teams = myfilter.qs
+
+    context = {
+        'teams': teams,
+        'pool': pool
+    }
+
+    return render(request, "Games/pooltable.html", context)
+
+def Fix(request):
+    
+    fixtures= Fixture.objects.all()
+    upcoming= Fixture.objects.filter(status="upcoming")
+    played= Fixture.objects.filter(status="played")
+    live= Fixture.objects.filter(status="live")
+
+    # Filter fixtures where both home and away teams belong to the same pool
+    
+    myfilter = FixtureFilter(request.GET, queryset=fixtures)
+    fixtures = myfilter.qs
+
+    context = {
+        'fixtures': fixtures,
+        'upcoming': upcoming,
+        'myfilter':myfilter,
+        'live':live,
+        'played':played,
+
+    }
+
+    return render(request, "Games/fixture.html", context)
