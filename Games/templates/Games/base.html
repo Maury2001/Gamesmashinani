@@ -229,23 +229,15 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link" href="{% url 'kiambutable' %}">
           <i class="bi bi-menu-button-wide"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          {% for pool in pools %}
-          <li><a href="{% url 'pooltable' pool.id %}">{{pool.name}}</a></li>
+        {% comment %} <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
-          {% endfor %}
-          <li>
-            <a href="{% url 'kiambutable' %}">
-              <i class="bi bi-circle"></i><span>Kiambu</span>
-            </a>
-          </li>
           
          
           
-        </ul>
+        </ul> {% endcomment %}
       </li><!-- End Components Nav -->
 
       {% comment %} <li class="nav-item">
