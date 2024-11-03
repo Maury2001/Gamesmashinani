@@ -20,8 +20,8 @@ from Games import views as game_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', game_view.Home, name='home'),
-    path('dashboard/', game_view.Dash, name='dashboard'),
+    path('home', game_view.Home, name='home'),
+    path('', game_view.Dash, name='dashboard'),
     path('regionform/', game_view.RegionAdj, name='regionform'),
     path('teamform/', game_view.TeamAdj, name='teamform'),
     path('poolform/', game_view.PoolAdj, name='poolform'),
